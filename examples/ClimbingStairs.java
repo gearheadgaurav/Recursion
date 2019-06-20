@@ -17,6 +17,9 @@ class ClimbingStairs{
 
 		System.out.println("No of ways to climb the stair: " 
 			+ countWaysToClimbAStair(height, steps));
+
+		System.out.println("No of ways to climb the stair with 2nd appraoch: " 
+			+ countWaysToClimbAStair2(height, steps));
 	}
 
 	public static int countWaysToClimbAStair(int height, int[] steps){
@@ -39,5 +42,25 @@ class ClimbingStairs{
 
 		return count;
 	} 
-	
+
+	public static int countWaysToClimbAStair2(int height, int[] steps){
+		return countWaysToClimbAStairHelper2(0, height, steps);
+	} 
+
+	private static int countWaysToClimbAStairHelper2(int index, int height, int[] steps){
+		if(index > height){
+			return 0;
+		}
+
+		if(index == height){
+			return 1;
+		}
+
+		int count = 0;
+		for(int i=0; i< steps.length; i++){
+			count = count + countWaysToClimbAStairHelper2(index+steps[i], height, steps);
+		}
+
+		return count;
+	} 
 }
